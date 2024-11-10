@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import Root from "./Components/Root/Root";
 import Home from "./Components/Home/Home";
-import Appliedjobs from "./Components/Appliedjobs/Appliedjobs";
+import AppliedJobs from "./Components/Appliedjobs/Appliedjobs";
 import Errorpages from "./Components/Errorpages/Errorpages";
 import JobDetails from "./Components/JobDetails/JobDetails";
 
@@ -20,12 +20,14 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "/applied",
-        element: <Appliedjobs></Appliedjobs>,
+        path: '/applied', 
+        element: <AppliedJobs></AppliedJobs>,
+        loader: () => fetch('../public/jobs.json') // warning: only load the data you need. do not load all the data
       },
       {
         path: "/job/:id",
         element: <JobDetails></JobDetails>,
+        loader: () => fetch('../public/jobs.json') 
       },
     ],
   },
